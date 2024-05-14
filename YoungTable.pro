@@ -10,10 +10,12 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    youngtable.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    youngtable.h
 
 FORMS += \
     mainwindow.ui

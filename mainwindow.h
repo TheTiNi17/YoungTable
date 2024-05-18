@@ -29,10 +29,17 @@ private slots:
 
     void on_randPermutationButton_clicked();
 
+    void on_GetReadingWord_clicked();
+
+    void on_GetReadingWord_2_clicked();
+
+    void on_GetReadingWord_3_clicked();
+
 private:
     Ui::MainWindow *ui;
     QMessageBox ErrorMsgBox;
     bool isPermutation(std::vector<int> vec);
+    std::vector<YoungTable> SYT_pair;
     std::vector<YoungTable> RSK(std::vector<int> permutation);
     std::vector<int> StrToVec(std::string str);
     std::string VecToStr(std::vector<int> vec);

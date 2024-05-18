@@ -10,6 +10,16 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     QRegExpValidator *validator2 = new QRegExpValidator(QRegExp("[0-9]+"));
     ui->RandomPermutationSizeLine->setValidator(validator2);
 
+    QFont font = ui->InsertionT1->font();
+
+    font.setFamily("Monospace");
+    font.setStyle(QFont::StyleItalic);
+    font.setFixedPitch(true);
+    font.setBold(true);
+
+    ui->InsertionT1->setFont(font);
+    ui->RecordingT1->setFont(font);
+
 }
 
 MainWindow::~MainWindow()
@@ -46,17 +56,20 @@ std::string MainWindow::VecToStr(std::vector<int> vec)
 bool MainWindow::isPermutation(std::vector<int> vec)
 {
     unsigned long long n = *max_element(vec.begin(), vec.end());
-    if (n != vec.size()) {
-        return false;  // Вектор не содержит всех чисел от 1 до n
+    if (n != vec.size())
+    {
+        //Вектор не содержит всех чисел от 1 до n
+        return false;
     }
     std::vector<bool> visited(n + 1, false);
     for (unsigned long long num : vec)
     {
-        if (num < 1 || num > n || visited[num])
+        if ((num < 1) || (num > n) || (visited.at(num)))
         {
-            return false;  // Вектор содержит дубликаты или числа вне диапазона
+            //Вектор содержит дубликаты или числа вне диапазона
+            return false;
         }
-        visited[num] = true;
+        visited.at(num) = true;
     }
     return true;
 }
@@ -91,11 +104,16 @@ void MainWindow::on_RSKButton_clicked()
     }
     else
     {
-        std::vector<YoungTable> SYTpair = RSK(permutation);
-        ui->InsT->append(QString::fromStdString(SYTpair.at(0).Draw()));
-        ui->RecT->append(QString::fromStdString(SYTpair.at(1).Draw()));
-        ui->InsRW->setText(QString::fromStdString(SYTpair.at(0).GetReadingWord()));
-        ui->RecRW->setText(QString::fromStdString(SYTpair.at(1).GetReadingWord()));
+        SYT_pair = RSK(permutation);
+        ui->InsertionT1->append(QString::fromStdString("permutation: " + content + "\n\nTable P:\n"));
+        ui->RecordingT1->append(QString::fromStdString("permutation: " + content + "\n\nTable Q:\n"));
+        ui->InsertionT1->append(QString::fromStdString(SYT_pair.at(0).ConvTabInStr()));
+        ui->RecordingT1->append(QString::fromStdString(SYT_pair.at(1).ConvTabInStr()));
+
+        std::string PReadingWord = VecToStr(SYT_pair.at(0).GetReadingWord());
+        std::string QReadingWord = VecToStr(SYT_pair.at(1).GetReadingWord());
+        ui->InsRW->setText(QString::fromStdString(PReadingWord));
+        ui->RecRW->setText(QString::fromStdString(QReadingWord));
     }
 }
 
@@ -186,8 +204,8 @@ std::vector<YoungTable> MainWindow::RSK(std::vector<int> permutation)
 
 void MainWindow::on_clearButton_clicked()
 {
-    ui->InsT->setText("");
-    ui->RecT->setText("");
+    ui->InsertionT1->setText("");
+    ui->RecordingT1->setText("");
     ui->RecRW->setText("");
     ui->InsRW->setText("");
 }
@@ -202,5 +220,46 @@ void MainWindow::on_randPermutationButton_clicked()
     int size = std::stoi(ui->RandomPermutationSizeLine->text().toStdString());
     std::string permutation = VecToStr(RandomPermutation(size));
     ui->PermutationLine->setText(QString::fromStdString(permutation));
+}
+
+void MainWindow::on_GetReadingWord_clicked()
+{
+    std::string content = ui->RecordingT1->toPlainText().toStdString();
+    if (content == "")
+    {
+        return;
+    }
+    std::string PReadingWord = VecToStr(SYT_pair.at(0).GetReadingWord());
+    std::string QReadingWord = VecToStr(SYT_pair.at(1).GetReadingWord());
+    ui->InsRW->setText(QString::fromStdString(PReadingWord));
+    ui->RecRW->setText(QString::fromStdString(QReadingWord));
+}
+
+
+void MainWindow::on_GetReadingWord_2_clicked()
+{
+    std::string content = ui->RecordingT1->toPlainText().toStdString();
+    if (content == "")
+    {
+        return;
+    }
+    std::string PReadingWord = VecToStr(SYT_pair.at(0).GetReversedReadingWord());
+    std::string QReadingWord = VecToStr(SYT_pair.at(1).GetReversedReadingWord());
+    ui->InsRW->setText(QString::fromStdString(PReadingWord));
+    ui->RecRW->setText(QString::fromStdString(QReadingWord));
+}
+
+
+void MainWindow::on_GetReadingWord_3_clicked()
+{
+    std::string content = ui->RecordingT1->toPlainText().toStdString();
+    if (content == "")
+    {
+        return;
+    }
+    std::string PReadingWord = VecToStr(SYT_pair.at(0).GetColumnReadingWord());
+    std::string QReadingWord = VecToStr(SYT_pair.at(1).GetColumnReadingWord());
+    ui->InsRW->setText(QString::fromStdString(PReadingWord));
+    ui->RecRW->setText(QString::fromStdString(QReadingWord));
 }
 

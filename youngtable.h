@@ -6,14 +6,17 @@
 #include <sstream>
 #include <fstream>
 #include <algorithm>
+#include <cmath>
 
 class YoungTable
 {
 public:
     YoungTable();
     YoungTable(std::vector<std::vector<int>> table);
-    std::string GetReadingWord();
-    std::string Draw();
+    std::vector<int> GetReadingWord();
+    std::vector<int> GetReversedReadingWord();
+    std::vector<int> GetColumnReadingWord();
+    std::string ConvTabInStr();
 
 private:
     std::vector<int> Lambda;

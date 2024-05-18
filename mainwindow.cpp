@@ -6,6 +6,10 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     ui->setupUi(this);
     QRegExpValidator *validator = new QRegExpValidator(QRegExp("[0-9]+(,[0-9]+)*"));
     ui->PermutationLine->setValidator(validator);
+
+    QRegExpValidator *validator2 = new QRegExpValidator(QRegExp("[0-9]+"));
+    ui->RandomPermutationSizeLine->setValidator(validator2);
+
 }
 
 MainWindow::~MainWindow()
@@ -13,19 +17,30 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-std::vector<int> MainWindow::StringToVec(std::string str)
+std::vector<int> MainWindow::StrToVec(std::string str)
 {
-    // Разделите строку на отдельные строки
+    // Разделить строку на отдельные учасстки, в данном случае числа разделенные запятыми
     std::stringstream ss(str);
     std::string token;
     std::vector<int> arr;
 
     while (std::getline(ss, token, ','))
     {
-        // Преобразуйте каждую строку в целое число и сохраните его в векторе
         arr.push_back(std::stoi(token));
     }
     return arr;
+}
+
+std::string MainWindow::VecToStr(std::vector<int> vec)
+{
+    std::stringstream ss;
+    for (unsigned long long i = 0; i < vec.size(); i++)
+    {
+        ss << vec.at(i) << ",";
+    }
+    std::string str = ss.str();
+    str.pop_back();
+    return str;
 }
 
 bool MainWindow::isPermutation(std::vector<int> vec)
@@ -46,14 +61,27 @@ bool MainWindow::isPermutation(std::vector<int> vec)
     return true;
 }
 
-void MainWindow::on_pushButton_clicked()
+std::vector<int> MainWindow::RandomPermutation(int size)
+{
+    //заполнение натуральными числами до N
+    std::vector<int> permutation(size);
+    for (int i = 0; i < size; i++)
+    {
+        permutation[i] = i + 1;
+    }
+    //перемешивание
+    random_shuffle(permutation.begin(), permutation.end());
+    return permutation;
+}
+
+void MainWindow::on_RSKButton_clicked()
 {
     std::string content = ui->PermutationLine->text().toStdString();
     if (content == "")
     {
         return;
     }
-    std::vector<int> permutation = StringToVec(content);
+    std::vector<int> permutation = StrToVec(content);
     if(!isPermutation(permutation))
     {
         ErrorMsgBox.setIcon(QMessageBox::Critical);
@@ -156,11 +184,23 @@ std::vector<YoungTable> MainWindow::RSK(std::vector<int> permutation)
     return Arr;
 }
 
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_clearButton_clicked()
 {
     ui->InsT->setText("");
     ui->RecT->setText("");
     ui->RecRW->setText("");
     ui->InsRW->setText("");
+}
+
+void MainWindow::on_randPermutationButton_clicked()
+{
+    std::string content = ui->RandomPermutationSizeLine->text().toStdString();
+    if (content == "")
+    {
+        return;
+    }
+    int size = std::stoi(ui->RandomPermutationSizeLine->text().toStdString());
+    std::string permutation = VecToStr(RandomPermutation(size));
+    ui->PermutationLine->setText(QString::fromStdString(permutation));
 }
 

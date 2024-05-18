@@ -23,15 +23,19 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_clearButton_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_RSKButton_clicked();
+
+    void on_randPermutationButton_clicked();
 
 private:
     Ui::MainWindow *ui;
     QMessageBox ErrorMsgBox;
     bool isPermutation(std::vector<int> vec);
     std::vector<YoungTable> RSK(std::vector<int> permutation);
-    std::vector<int> StringToVec(std::string str);
+    std::vector<int> StrToVec(std::string str);
+    std::string VecToStr(std::vector<int> vec);
+    std::vector<int> RandomPermutation(int size);
 };
 #endif // MAINWINDOW_H

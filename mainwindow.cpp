@@ -229,12 +229,13 @@ void MainWindow::on_GetReadingWord_clicked()
     {
         return;
     }
-    std::string PReadingWord = VecToStr(SYT_pair.at(0).GetReadingWord());
-    std::string QReadingWord = VecToStr(SYT_pair.at(1).GetReadingWord());
-    ui->InsRW->setText(QString::fromStdString(PReadingWord));
-    ui->RecRW->setText(QString::fromStdString(QReadingWord));
-}
+    QString PReadingWord = QString::fromStdString(VecToStr(SYT_pair.at(0).GetReadingWord()));
+    QString QReadingWord = QString::fromStdString(VecToStr(SYT_pair.at(1).GetReadingWord()));
 
+    ui->InsRW->setText(PReadingWord);
+    ui->RecRW->setText(QReadingWord);
+    ui->PermutationLine->setText(QReadingWord);
+}
 
 void MainWindow::on_GetReadingWord_2_clicked()
 {
@@ -243,12 +244,13 @@ void MainWindow::on_GetReadingWord_2_clicked()
     {
         return;
     }
-    std::string PReadingWord = VecToStr(SYT_pair.at(0).GetReversedReadingWord());
-    std::string QReadingWord = VecToStr(SYT_pair.at(1).GetReversedReadingWord());
-    ui->InsRW->setText(QString::fromStdString(PReadingWord));
-    ui->RecRW->setText(QString::fromStdString(QReadingWord));
-}
+    QString PReadingWord = QString::fromStdString(VecToStr(SYT_pair.at(0).GetReversedReadingWord()));
+    QString QReadingWord = QString::fromStdString(VecToStr(SYT_pair.at(1).GetReversedReadingWord()));
 
+    ui->InsRW->setText(PReadingWord);
+    ui->RecRW->setText(QReadingWord);
+    ui->PermutationLine->setText(QReadingWord);
+}
 
 void MainWindow::on_GetReadingWord_3_clicked()
 {
@@ -257,9 +259,10 @@ void MainWindow::on_GetReadingWord_3_clicked()
     {
         return;
     }
-    std::string PReadingWord = VecToStr(SYT_pair.at(0).GetColumnReadingWord());
-    std::string QReadingWord = VecToStr(SYT_pair.at(1).GetColumnReadingWord());
-    ui->InsRW->setText(QString::fromStdString(PReadingWord));
-    ui->RecRW->setText(QString::fromStdString(QReadingWord));
-}
+    QString PReadingWord = QString::fromStdString(VecToStr(SYT_pair.at(0).GetColumnReadingWord()));
+    QString QReadingWord = QString::fromStdString(VecToStr(SYT_pair.at(1).GetColumnReadingWord()));
 
+    ui->InsRW->setText(PReadingWord);
+    ui->RecRW->setText(QReadingWord);
+    ui->PermutationLine->setText(QReadingWord);
+}

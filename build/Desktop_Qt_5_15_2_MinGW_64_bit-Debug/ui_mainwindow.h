@@ -51,7 +51,13 @@ public:
     QTextEdit *RecordingT1;
     QGroupBox *groupBox_3;
     QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_8;
+    QLabel *label_5;
+    QPushButton *UseRWOfPButton;
+    QLabel *label_7;
+    QPushButton *UseRWOfQButton;
     QHBoxLayout *horizontalLayout_10;
+    QLabel *label_8;
     QPushButton *GetReadingWord;
     QPushButton *GetReadingWord_2;
     QPushButton *GetReadingWord_3;
@@ -64,15 +70,6 @@ public:
     QHBoxLayout *horizontalLayout;
     QPushButton *clearButton;
     QSpacerItem *horizontalSpacer;
-    QWidget *Iterations;
-    QWidget *widget;
-    QHBoxLayout *horizontalLayout_7;
-    QLabel *label_3;
-    QVBoxLayout *verticalLayout_4;
-    QLineEdit *InsRW_2;
-    QLineEdit *InsRW_3;
-    QLineEdit *InsRW_4;
-    QSpacerItem *horizontalSpacer_3;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -154,6 +151,9 @@ public:
         InsertionT1->setLayoutDirection(Qt::LeftToRight);
         InsertionT1->setStyleSheet(QString::fromUtf8("QTextEdit *textEdit = new QTextEdit;\n"
 "textEdit->setAlignment(Qt::AlignLeft | Qt::AlignTop);"));
+        InsertionT1->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        InsertionT1->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        InsertionT1->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
         InsertionT1->setLineWrapMode(QTextEdit::WidgetWidth);
         InsertionT1->setReadOnly(true);
 
@@ -161,6 +161,9 @@ public:
 
         RecordingT1 = new QTextEdit(groupBox_2);
         RecordingT1->setObjectName(QString::fromUtf8("RecordingT1"));
+        RecordingT1->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        RecordingT1->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        RecordingT1->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
         RecordingT1->setReadOnly(true);
 
         horizontalLayout_3->addWidget(RecordingT1);
@@ -175,8 +178,42 @@ public:
         groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
         verticalLayout = new QVBoxLayout(groupBox_3);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
+        label_5 = new QLabel(groupBox_3);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_8->addWidget(label_5);
+
+        UseRWOfPButton = new QPushButton(groupBox_3);
+        UseRWOfPButton->setObjectName(QString::fromUtf8("UseRWOfPButton"));
+
+        horizontalLayout_8->addWidget(UseRWOfPButton);
+
+        label_7 = new QLabel(groupBox_3);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setLayoutDirection(Qt::LeftToRight);
+        label_7->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_8->addWidget(label_7);
+
+        UseRWOfQButton = new QPushButton(groupBox_3);
+        UseRWOfQButton->setObjectName(QString::fromUtf8("UseRWOfQButton"));
+
+        horizontalLayout_8->addWidget(UseRWOfQButton);
+
+
+        verticalLayout->addLayout(horizontalLayout_8);
+
         horizontalLayout_10 = new QHBoxLayout();
         horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
+        label_8 = new QLabel(groupBox_3);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+        label_8->setAlignment(Qt::AlignCenter);
+
+        horizontalLayout_10->addWidget(label_8);
+
         GetReadingWord = new QPushButton(groupBox_3);
         GetReadingWord->setObjectName(QString::fromUtf8("GetReadingWord"));
 
@@ -245,47 +282,6 @@ public:
         verticalLayout_3->addLayout(horizontalLayout);
 
         tabWidget->addTab(Main, QString());
-        Iterations = new QWidget();
-        Iterations->setObjectName(QString::fromUtf8("Iterations"));
-        widget = new QWidget(Iterations);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(10, 20, 701, 241));
-        horizontalLayout_7 = new QHBoxLayout(widget);
-        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
-        horizontalLayout_7->setContentsMargins(0, 0, 0, 0);
-        label_3 = new QLabel(widget);
-        label_3->setObjectName(QString::fromUtf8("label_3"));
-
-        horizontalLayout_7->addWidget(label_3);
-
-        verticalLayout_4 = new QVBoxLayout();
-        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
-        InsRW_2 = new QLineEdit(widget);
-        InsRW_2->setObjectName(QString::fromUtf8("InsRW_2"));
-        InsRW_2->setReadOnly(true);
-
-        verticalLayout_4->addWidget(InsRW_2);
-
-        InsRW_3 = new QLineEdit(widget);
-        InsRW_3->setObjectName(QString::fromUtf8("InsRW_3"));
-        InsRW_3->setReadOnly(true);
-
-        verticalLayout_4->addWidget(InsRW_3);
-
-        InsRW_4 = new QLineEdit(widget);
-        InsRW_4->setObjectName(QString::fromUtf8("InsRW_4"));
-        InsRW_4->setReadOnly(true);
-
-        verticalLayout_4->addWidget(InsRW_4);
-
-
-        horizontalLayout_7->addLayout(verticalLayout_4);
-
-        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_7->addItem(horizontalSpacer_3);
-
-        tabWidget->addTab(Iterations, QString());
 
         verticalLayout_2->addWidget(tabWidget);
 
@@ -323,6 +319,11 @@ public:
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         groupBox_3->setTitle(QCoreApplication::translate("MainWindow", "Reading Word Variations", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "Auto-Copy Reading Word of", nullptr));
+        UseRWOfPButton->setText(QCoreApplication::translate("MainWindow", "Table P", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "or", nullptr));
+        UseRWOfQButton->setText(QCoreApplication::translate("MainWindow", "Table Q", nullptr));
+        label_8->setText(QCoreApplication::translate("MainWindow", "Copy Reading Word", nullptr));
         GetReadingWord->setText(QCoreApplication::translate("MainWindow", "ReadingWord", nullptr));
         GetReadingWord_2->setText(QCoreApplication::translate("MainWindow", "Reversed ReadingWord", nullptr));
         GetReadingWord_3->setText(QCoreApplication::translate("MainWindow", "Column ReadingWord", nullptr));
@@ -331,11 +332,6 @@ public:
         label_4->setText(QCoreApplication::translate("MainWindow", "Q Reading Word:", nullptr));
         clearButton->setText(QCoreApplication::translate("MainWindow", "Clear RSK Result", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(Main), QCoreApplication::translate("MainWindow", "Main", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "\320\237\321\200\320\270\320\274\320\265\321\200\321\213 \321\204\320\276\321\200\320\274\321\213 \316\273 = (1;2;3;4)", nullptr));
-        InsRW_2->setText(QCoreApplication::translate("MainWindow", "9,3,6,10,4,8,1,2,5,7", nullptr));
-        InsRW_3->setText(QCoreApplication::translate("MainWindow", "6,3,9,2,7,8,1,4,5,10", nullptr));
-        InsRW_4->setText(QCoreApplication::translate("MainWindow", "8,9,10,2,5,6,3,4,7,1", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(Iterations), QCoreApplication::translate("MainWindow", "Examples", nullptr));
     } // retranslateUi
 
 };

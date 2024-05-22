@@ -18,7 +18,11 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     font.setBold(true);
 
     ui->InsertionT1->setFont(font);
+    ui->InsertionT1->setWordWrapMode(QTextOption::NoWrap);
     ui->RecordingT1->setFont(font);
+    ui->RecordingT1->setWordWrapMode(QTextOption::NoWrap);
+
+    ui->UseRWOfQButton->setDisabled(true);
 
 }
 
@@ -105,8 +109,8 @@ void MainWindow::on_RSKButton_clicked()
     else
     {
         SYT_pair = RSK(permutation);
-        ui->InsertionT1->append(QString::fromStdString("permutation: " + content + "\n\nTable P:\n"));
-        ui->RecordingT1->append(QString::fromStdString("permutation: " + content + "\n\nTable Q:\n"));
+        ui->InsertionT1->append(QString::fromStdString("\n\npermutation: " + content + "\n\nTable P:\n"));
+        ui->RecordingT1->append(QString::fromStdString("\n\npermutation: " + content + "\n\nTable Q:\n"));
         ui->InsertionT1->append(QString::fromStdString(SYT_pair.at(0).ConvTabInStr()));
         ui->RecordingT1->append(QString::fromStdString(SYT_pair.at(1).ConvTabInStr()));
 
@@ -234,7 +238,15 @@ void MainWindow::on_GetReadingWord_clicked()
 
     ui->InsRW->setText(PReadingWord);
     ui->RecRW->setText(QReadingWord);
-    ui->PermutationLine->setText(QReadingWord);
+
+    if (ui->UseRWOfQButton->isEnabled())
+    {
+        ui->PermutationLine->setText(PReadingWord);
+    }
+    else
+    {
+        ui->PermutationLine->setText(QReadingWord);
+    }
 }
 
 void MainWindow::on_GetReadingWord_2_clicked()
@@ -249,7 +261,15 @@ void MainWindow::on_GetReadingWord_2_clicked()
 
     ui->InsRW->setText(PReadingWord);
     ui->RecRW->setText(QReadingWord);
-    ui->PermutationLine->setText(QReadingWord);
+
+    if (ui->UseRWOfQButton->isEnabled())
+    {
+        ui->PermutationLine->setText(PReadingWord);
+    }
+    else
+    {
+        ui->PermutationLine->setText(QReadingWord);
+    }
 }
 
 void MainWindow::on_GetReadingWord_3_clicked()
@@ -264,5 +284,27 @@ void MainWindow::on_GetReadingWord_3_clicked()
 
     ui->InsRW->setText(PReadingWord);
     ui->RecRW->setText(QReadingWord);
-    ui->PermutationLine->setText(QReadingWord);
+
+    if (ui->UseRWOfQButton->isEnabled())
+    {
+        ui->PermutationLine->setText(PReadingWord);
+    }
+    else
+    {
+        ui->PermutationLine->setText(QReadingWord);
+    }
 }
+
+void MainWindow::on_UseRWOfPButton_clicked()
+{
+    ui->UseRWOfQButton->setDisabled(false);
+    ui->UseRWOfPButton->setDisabled(true);
+}
+
+
+void MainWindow::on_UseRWOfQButton_clicked()
+{
+    ui->UseRWOfPButton->setDisabled(false);
+    ui->UseRWOfQButton->setDisabled(true);
+}
+

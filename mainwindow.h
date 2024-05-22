@@ -35,6 +35,10 @@ private slots:
 
     void on_GetReadingWord_3_clicked();
 
+    void on_UseRWOfPButton_clicked();
+
+    void on_UseRWOfQButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QMessageBox ErrorMsgBox;

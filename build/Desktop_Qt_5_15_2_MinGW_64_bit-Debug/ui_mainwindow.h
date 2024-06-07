@@ -61,7 +61,6 @@ public:
     QPushButton *GetReadingWord;
     QPushButton *GetReadingWord_2;
     QPushButton *GetReadingWord_3;
-    QPushButton *GetReadingWord_4;
     QHBoxLayout *horizontalLayout_4;
     QLabel *label_2;
     QLineEdit *InsRW;
@@ -188,6 +187,14 @@ public:
 
         UseRWOfPButton = new QPushButton(groupBox_3);
         UseRWOfPButton->setObjectName(QString::fromUtf8("UseRWOfPButton"));
+        UseRWOfPButton->setStyleSheet(QString::fromUtf8("QPushButton\n"
+"{\n"
+"}\n"
+"\n"
+"QPushButton:disabled\n"
+"{\n"
+"	background-color:rgb(196, 255, 174)\n"
+"}"));
 
         horizontalLayout_8->addWidget(UseRWOfPButton);
 
@@ -200,6 +207,14 @@ public:
 
         UseRWOfQButton = new QPushButton(groupBox_3);
         UseRWOfQButton->setObjectName(QString::fromUtf8("UseRWOfQButton"));
+        UseRWOfQButton->setStyleSheet(QString::fromUtf8("QPushButton\n"
+"{\n"
+"}\n"
+"\n"
+"QPushButton:disabled\n"
+"{\n"
+"	background-color:rgb(196, 255, 174)\n"
+"}"));
 
         horizontalLayout_8->addWidget(UseRWOfQButton);
 
@@ -228,11 +243,6 @@ public:
         GetReadingWord_3->setObjectName(QString::fromUtf8("GetReadingWord_3"));
 
         horizontalLayout_10->addWidget(GetReadingWord_3);
-
-        GetReadingWord_4 = new QPushButton(groupBox_3);
-        GetReadingWord_4->setObjectName(QString::fromUtf8("GetReadingWord_4"));
-
-        horizontalLayout_10->addWidget(GetReadingWord_4);
 
 
         verticalLayout->addLayout(horizontalLayout_10);
@@ -327,7 +337,6 @@ public:
         GetReadingWord->setText(QCoreApplication::translate("MainWindow", "ReadingWord", nullptr));
         GetReadingWord_2->setText(QCoreApplication::translate("MainWindow", "Reversed ReadingWord", nullptr));
         GetReadingWord_3->setText(QCoreApplication::translate("MainWindow", "Column ReadingWord", nullptr));
-        GetReadingWord_4->setText(QCoreApplication::translate("MainWindow", "\320\247\321\202\320\276-\320\275\320\270\320\261\321\203\320\264\321\214 \320\265\321\211\320\265", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "P Reading Word:", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "Q Reading Word:", nullptr));
         clearButton->setText(QCoreApplication::translate("MainWindow", "Clear RSK Result", nullptr));

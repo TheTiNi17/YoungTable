@@ -185,6 +185,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </item>
              <item>
               <widget class="QPushButton" name="UseRWOfPButton">
+               <property name="styleSheet">
+                <string notr="true">QPushButton
+{
+}
+
+QPushButton:disabled
+{
+	background-color:rgb(196, 255, 174)
+}</string>
+               </property>
                <property name="text">
                 <string>Table P</string>
                </property>
@@ -205,6 +215,16 @@ li.checked::marker { content: &quot;\2612&quot;; }
              </item>
              <item>
               <widget class="QPushButton" name="UseRWOfQButton">
+               <property name="styleSheet">
+                <string notr="true">QPushButton
+{
+}
+
+QPushButton:disabled
+{
+	background-color:rgb(196, 255, 174)
+}</string>
+               </property>
                <property name="text">
                 <string>Table Q</string>
                </property>
@@ -242,13 +262,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
               <widget class="QPushButton" name="GetReadingWord_3">
                <property name="text">
                 <string>Column ReadingWord</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="GetReadingWord_4">
-               <property name="text">
-                <string>Что-нибудь еще</string>
                </property>
               </widget>
              </item>
